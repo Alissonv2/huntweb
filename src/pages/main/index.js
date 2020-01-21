@@ -42,7 +42,8 @@ export default class Main extends Component {
                 { imoveis.map(imovel => (
                     <article key={ imovel.url.id }>
                         <strong>{ imovel.listing.title }</strong>
-                        <p>{ imovel.listing.description }</p>
+                        <img alt="Imóveis" src={imovel.listing.images[0].replace('{action}/{width}x{height}', 'fit-in/870x453')}/>
+                        <p>{ imovel.listing.description.replace(/<br><br>/g, '').replace('Este é um Imóvel ZAP. Estamos comprando, renovando e vendendo imóveis.', '') }</p>
                         <a href="">Acessar </a>
 
                     </article>
