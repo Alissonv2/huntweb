@@ -22,11 +22,11 @@ export default class Main extends Component {
         this.setState({ imoveis: listings, imovelInfo });
     }
 
-    prevPage = () => {}
+    prevPage = () => { }
 
     nextPage = () => {
         const { page, imovelInfo } = this.state;
-        
+
         if (page === imovelInfo.totalCount) return;
 
         const pageNumber = page + 1;
@@ -41,17 +41,25 @@ export default class Main extends Component {
             <div className="imovel-list" >
                 { imoveis.map(imovel => (
                     <article key={ imovel.url.id }>
-                        <strong>{ imovel.listing.title }</strong>
-                        <img alt="Imóveis" src={imovel.listing.images[0].replace('{action}/{width}x{height}', 'fit-in/870x453')}/>
-                        <p>{ imovel.listing.description.replace(/<br><br>/g, '').replace('Este é um Imóvel ZAP. Estamos comprando, renovando e vendendo imóveis.', '') }</p>
-                        <a href="">Acessar </a>
+                        <img alt="Imóveis" src={ imovel.listing.images[0].replace('{action}/{width}x{height}', 'fit-in/470x300') } />
+                        <div className="infor-imo">
+                            <strong>{ imovel.listing.title }</strong>
+                            <p>Quartos: { imovel.listing.bedrooms }</p>
+                            <p>Suites: { imovel.listing.suites }</p>
+                            <p>Banheiros: { imovel.listing.bathrooms }</p>
+                            <p>Vagas na garagem: { imovel.listing.parkingSpaces }</p>
+                            <p>Tipo de negócio: { imovel.listing.pricingInfos[0].businessType.replace('SALE','Venda') } </p>
+                            <p>R$:{imovel.listing.pricingInfos[0].price}</p>
+                            <a href="">Acessar </a>
+                        </div>
+                        
 
                     </article>
                 )) }
 
                 <div className="actions">
-                    <button onClick={this.prevPage} >Anterior</button>
-                    <button onClick={this.nextPage} >Próxima</button>
+                    <button onClick={ this.prevPage } >Anterior</button>
+                    <button onClick={ this.nextPage } >Próxima</button>
                 </div>
 
             </div>
